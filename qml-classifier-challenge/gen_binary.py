@@ -34,10 +34,10 @@ def feature_map(x, meas=False):
     for _ in range(2):
         qml.Hadamard(wires=0)
         qml.Hadamard(wires=1)
-        qml.RX(x[0], wires=0)
-        qml.RX(x[1], wires=1)
+        qml.RZ(-2 * x[0], wires=0)
+        qml.RZ(-2 * x[1], wires=1)
         qml.CNOT(wires=[0, 1])
-        qml.RX(x[2], wires=1)
+        qml.RZ(-2 * x[2], wires=1)
         qml.CNOT(wires=[0, 1])
 
     if meas:
@@ -108,7 +108,7 @@ def gen_data(n_points, **params):
 
 if __name__ == "__main__":
 
-    SAVE_PATH = "data/"
+    SAVE_PATH = "data_1/"
 
     Z = np.array([[1, 0], [0, -1]])  # Pauli-Z operator
     f = np.array(np.kron(Z, Z), requires_grad=False)  # Parity function
